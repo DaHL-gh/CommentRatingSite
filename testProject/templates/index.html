@@ -4,6 +4,7 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet" href="/static/css/style.css" />
+		<link rel="stylesheet" href="/static/css/media.css" />
 		<title>Сайт порт</title>
 		<link
 			href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap"
@@ -11,69 +12,78 @@
 		/>
 	</head>
 	<body>
-		<div class="header">
+		<header class="header" id="header">
 			<h1 class="header-title">ЕА Конечных</h1>
 			<p class="header-subtitle">
 				фрилансер, веб-разработчик <br />создание сайтов
 			</p>
-			<div class="header-arrow">
+			<a href="#portfolio" class="header-arrow">
 				<img src="/static/svg/chevron-down.svg" alt="Arrow" />
-			</div>
-		</div>
-		<div class="portfolio">
+			</a>
+		</header>
+		<main class="portfolio" id = "portfolio">
 			<div class="container">
 				<h2 class="portfolio-header">Портфолио</h2>
 
 				<div class="portfolio-cards-wrapper">
+					<!-- card -->
 					<div class="card">
-						<img
-							class="card-img"
-							src="/static/jpg/forest.jpg"
-							alt="Многостраничный сайт"
-						/>
-						<h3 class="card-title">Многостраничный сайт</h3>
-						<p>Верстка многостраничного сайта.</p>
+						<a href="/forest_travel" class="card-link">
+							<img
+								class="card-img"
+								src="/static/jpg/forest.jpg"
+								alt="Многостраничный сайт"
+							/>
+							<h3 class="card-title">Многостраничный сайт</h3>
+							<p>Верстка многостраничного сайта.</p>
+						</a>
 					</div>
 
 					<div class="card">
-						<img
-							class="card-img"
-							src="/static/jpg/unit.jpg"
-							alt="Многостраничный сайт"
-						/>
-						<h3 class="card-title">Адаптивный лендинг</h3>
-						<p>Верстка многостраничного сайта.</p>
-					</div>
-					<!-- // Card -->
-
-					<!-- Card -->
-					<div class="card">
-						<img
-							class="card-img"
-							src="/static/jpg/www.jpg"
-							alt="Многостраничный сайт"
-						/>
-						<h3 class="card-title">Личный сайт</h3>
-						<p>Верстка многостраничного сайта.</p>
+						<a href="/forest_travel" class="card-link">
+							<img
+								class="card-img"
+								src="/static/jpg/unit.jpg"
+								alt="Многостраничный сайт"
+							/>
+							<h3 class="card-title">Адаптивный лендинг</h3>
+							<p>Верстка многостраничного сайта.</p>
+						</a>
 					</div>
 					<!-- // Card -->
 
 					<!-- Card -->
 					<div class="card">
-						<img
-							class="card-img"
-							src="/static/jpg/quantum.jpg"
-							alt="Многостраничный сайт"
-						/>
-						<h3 class="card-title">Интернет магазин</h3>
-						<p>Верстка многостраничного сайта.</p>
+						<a href="/forest_travel" class="card-link">
+							<img
+								class="card-img"
+								src="/static/jpg/www.jpg"
+								alt="Многостраничный сайт"
+							/>
+							<h3 class="card-title">Личный сайт</h3>
+							<p>Верстка многостраничного сайта.</p>
+						</a>
+					</div>
+					<!-- // Card -->
+
+					<!-- Card -->
+					<div class="card">
+						<a href="/forest_travel" class="card-link">
+							<img
+								class="card-img"
+								src="/static/jpg/quantum.jpg"
+								alt="Многостраничный сайт"
+							/>
+							<h3 class="card-title">Интернет магазин</h3>
+							<p>Верстка многостраничного сайта.</p>
+						</a>
 					</div>
 					<!-- // Card -->
 				</div>
 			</div>
-		</div>
+		</main>
 
-		<div class="footer">
+		<footer class="footer">
 			<div class="container">
 				<div class="footer-row">
 					<!-- footer-copyright -->
@@ -88,32 +98,46 @@
 						<p>Мои профили в социальных сетях:</p>
 						<div class="footer-icons-row">
 							<a href="#">
-								<img src="/static/svg/instagram 1.svg" alt="Insta">
+								<img src="/static/svg/instagram 1.svg" alt="Insta" />
 							</a>
 							<a href="#">
-								<img src="/static/svg/facebook-f 1.svg" alt="face">
+								<img src="/static/svg/facebook-f 1.svg" alt="face" />
+							</a>
+							<a href="https://vk.com/etozema">
+								<img src="/static/svg/vk-brands 1.svg" alt="vk" />
 							</a>
 							<a href="#">
-								<img src="/static/svg/vk-brands 1.svg" alt="vk">
+								<img
+									src="/static/svg/linkedin-in-brands.svg"
+									alt="link"
+								/>
 							</a>
 							<a href="#">
-								<img src="/static/svg/linkedin-in-brands.svg" alt="link">
-							</a>
-							<a href="#">
-								<img src="/static/svg/github-brands.svg" alt="git">
+								<img src="/static/svg/github-brands.svg" alt="git" />
 							</a>
 						</div>
 					</div>
 					<!-- //footer-icons -->
 
 					<div class="footer-contacts footer-col">
-						<a href="#" class="footer-button">
+						<a href="https://vk.com/etozema" class="footer-button">
 							Связаться Вконтакте
 						</a>
-						<p>Напишите мне, чтобы заказать или узнать стоимость верстки вашего проекта.</p>
+						<p>
+							Напишите мне, чтобы заказать или узнать стоимость
+							верстки вашего проекта. 
+						</p>
 					</div>
 				</div>
 			</div>
-		</div>
+		</footer>
+
+		<!-- Библиотеки и плагины -->
+		<script src="/static/js/jquery-3.7.1.min.js"></script>
+		<script src="/static/js/jquery.vide.min.js"></script>
+		<!-- Собственные скрипты и вызовы библиотек  -->
+		<script src="/static/js/main1.js"></script>
+
+
 	</body>
 </html>

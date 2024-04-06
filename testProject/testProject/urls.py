@@ -18,8 +18,10 @@ from django.contrib import admin
 from django.urls import path
 
 from testApp.views import index
+from testApp.views import forest_travel
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index),
+    path('forest_travel', forest_travel),
 ]
