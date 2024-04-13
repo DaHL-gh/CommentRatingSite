@@ -1,5 +1,5 @@
 """
-URL configuration for testProject project.
+URL configuration for CommentRatingSite project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/5.0/topics/http/urls/
@@ -17,11 +17,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from testApp.views import index
-from testApp.views import forest_travel
+import SiteApp.views as site
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', index),
-    path('forest_travel', forest_travel),
+    path('', site.index),
+    path('forest_travel', site.forest_travel),
 ]
