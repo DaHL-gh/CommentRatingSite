@@ -5,19 +5,28 @@ from sklearn.svm import SVC
 from sklearn.linear_model import LogisticRegression
 from sklearn.preprocessing import LabelEncoder
 from sklearn.naive_bayes import MultinomialNB
-from cleaner import CleanedKomm
+from joblib import dump, load
+import matplotlib.pyplot as plt
 from sklearn import metrics
 import pandas as pd
 import numpy as np
 
 # Convert text to numerical features using CountVectorizer
-comment_df = pd.read_csv("cleaned_dataset.csv")
-vectorizer = TfidfVectorizer()
-X_vect = vectorizer.fit_transform(comment_df["cleaned_comments"])
+comment_df = pd.read_csv(r"C:\Users\Senox\Desktop\Projects\CommentRatingSite\AIModel\cleaned_dataset.csv")
+
+tfidf_vectorizer = TfidfVectorizer()
+X_vect = tfidf_vectorizer.fit_transform(comment_df["cleaned_comments"])
+
+# save learning vectorizer
+dump(tfidf_vectorizer, "tfidf_vectorizer.bin", compress=True)
 
 y = np.array(comment_df["labels"])
 label_encoder = LabelEncoder()
+
 y_encoded = label_encoder.fit_transform(y)
+
+# save learning encoder
+dump(label_encoder, "label_encoder.bin", compress=True)
 
 # Split data into train and test sets
 X_train, X_test, y_train, y_test = train_test_split(X_vect, y_encoded, test_size=0.2, random_state=42)
@@ -25,28 +34,23 @@ X_train, X_test, y_train, y_test = train_test_split(X_vect, y_encoded, test_size
 
 def train_and_predict_finish_model():
     nb_classifier = MultinomialNB(alpha=0.5)
-    rfc_classifier = RandomForestClassifier(n_estimators=900, max_depth=4, random_state=42)
     lr_classifier = LogisticRegression(C=3, max_iter=300, class_weight=None, n_jobs=-1, random_state=42)
     svc_classifier = SVC(C=1, kernel="linear", probability=True, random_state=42)
-    ec_classifier = VotingClassifier(estimators=[('Multinominal NB', nb_classifier),
-                                                 ('Logistic Regression', lr_classifier),
-                                                 ('Support Vector Machine', svc_classifier)], voting='soft',
+    ec_classifier = VotingClassifier(estimators=[("Multinominal NB", nb_classifier),
+                                                 ("Logistic Regression", lr_classifier),
+                                                 ("Support Vector Machine", svc_classifier)], voting='soft',
                                      weights=[1, 2, 3])
     ec_classifier.fit(X_train, y_train)
+
+    # save learning model
+    dump(ec_classifier, "model_v_0_1.pkl", compress=True)
     pred = ec_classifier.predict(X_test)
     score = metrics.accuracy_score(y_test, pred)
-    print('Ready')
-    while True:
-        user_text = input("Введите ваш текст: ")
-        komm_cleaner = CleanedKomm()
-        clear_user_text = komm_cleaner.clean_text(user_text)
-        vect_user_text = vectorizer.transform([clear_user_text])
-        print(label_encoder.inverse_transform(ec_classifier.predict(vect_user_text)))
 
     return score
 
 
-print(train_and_predict_finish_model())
+train_and_predict_finish_model()
 
 # def train_and_predict_SVC():
 #     svc_classifier = SVC(probability=False)
@@ -78,19 +82,6 @@ print(train_and_predict_finish_model())
 #
 # print(train_and_predict_LogisticRegression())
 # #best {'C': 3, 'class_weight': None, 'max_iter': 300} 0.524
-
-# def train_and_predict_RandomForestClassifier():
-#     rfc_classifier = RandomForestClassifier()
-#     params = {"max_depth": range(1, 10),
-#               "n_estimators": range(100, 500, 100)}
-#     grid_classifier = GridSearchCV(rfc_classifier, params, verbose=3)
-#     grid_classifier.fit(X_train, y_train)
-#     best_params = grid_classifier.best_params_
-#
-#     return best_params
-#
-#
-# print(train_and_predict_RandomForestClassifier())
 
 # def train_and_predict_MultinomialNB(alpha):
 #     nb_classifier = MultinomialNB(alpha=alpha)
