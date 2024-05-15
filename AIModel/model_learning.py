@@ -11,27 +11,28 @@ from sklearn import metrics
 import pandas as pd
 import numpy as np
 
-# Convert text to numerical features using CountVectorizer
+
 comment_df = pd.read_csv(r"C:\Users\Senox\Desktop\Projects\CommentRatingSite\AIModel\cleaned_dataset.csv")
 
+# Convert text to numerical features using TfidfVectorizer
 tfidf_vectorizer = TfidfVectorizer()
 X_vect = tfidf_vectorizer.fit_transform(comment_df["cleaned_comments"])
 
-# save learning vectorizer
+# Save learning vectorizer
 dump(tfidf_vectorizer, "tfidf_vectorizer.bin", compress=True)
 
+# Convert text to numerical features using LabelEncoder
 y = np.array(comment_df["labels"])
 label_encoder = LabelEncoder()
-
 y_encoded = label_encoder.fit_transform(y)
 
-# save learning encoder
+# Save learning encoder
 dump(label_encoder, "label_encoder.bin", compress=True)
 
 # Split data into train and test sets
 X_train, X_test, y_train, y_test = train_test_split(X_vect, y_encoded, test_size=0.2, random_state=42)
 
-
+# Train and predict general model
 def train_and_predict_finish_model():
     nb_classifier = MultinomialNB(alpha=0.5)
     lr_classifier = LogisticRegression(C=3, max_iter=300, class_weight=None, n_jobs=-1, random_state=42)
@@ -42,7 +43,7 @@ def train_and_predict_finish_model():
                                      weights=[1, 2, 3])
     ec_classifier.fit(X_train, y_train)
 
-    # save learning model
+    # Save learning model
     dump(ec_classifier, "model_v_0_1.pkl", compress=True)
     pred = ec_classifier.predict(X_test)
     score = metrics.accuracy_score(y_test, pred)
