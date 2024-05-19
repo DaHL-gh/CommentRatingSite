@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, PureComponent } from "react";
+import { PieChart, Pie, Legend, Tooltip, ResponsiveContainer } from "recharts";
 import "./App.css";
 import "./styles/main.css";
+// "homepage": "https://razumm56.github.io/testemoratevk"
 import {
 	BrowserRouter as Router,
 	Routes,
@@ -27,25 +29,26 @@ function App() {
 		}, 2000);
 	}, []);
 	const loaderStyle = {
-		position: "fixed", 
-		top: "0", 
-		left: "0", 
+		position: "fixed",
+		top: "0",
+		left: "0",
 		width: "100%",
-		height: "100%", 
-		backgroundColor: "#171718", 
-		display: "flex", 
-		justifyContent: "center", 
+		height: "100%",
+		backgroundColor: "#171718",
+		display: "flex",
+		justifyContent: "center",
 		alignItems: "center",
-		zIndex: "1000", 
+		zIndex: "1000",
 	};
 
 	return (
+		
 		<motion.div
 			className="App"
 			initial={{ opacity: 1 }}
 			animate={{ opacity: loading ? 0 : 1 }}
 			exit={{ opacity: 1 }}
-			transition={{ duration: 2.5}} // Установите продолжительность анимации
+			transition={{ duration: 2.5 }}
 		>
 			{loading ? (
 				<div style={loaderStyle}>
@@ -62,6 +65,8 @@ function App() {
 					<ScrollToTop />
 					<Navbar />
 					<AnimatedRoute />
+					{/* <Home/> */}
+					{/* <Footer/> */}
 				</Router>
 			)}
 		</motion.div>

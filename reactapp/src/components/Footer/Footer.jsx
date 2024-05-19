@@ -10,17 +10,17 @@ const Footer = () => {
 				<div className="footer__wrapper">
 					<ul className="social">
 						<li className="social__item" style = {{listStyle: 'none'}}>
-							<a href="#!">
+							<a href="https://vk.com/irit_rtf_urfu" target="_blank">
 								<img src={vk} alt="Link" />
 							</a>
 						</li>
 						<li className="social__item" style = {{listStyle: 'none'}}>
-							<a href="#!">
+							<a href="https://github.com" target="_blank">
 								<img src={gitHub} alt="Link" />
 							</a>
 						</li>
 						<li className="social__item" style = {{listStyle: 'none'}}>
-							<a href="#!">
+							<a href="https://telegram.me/Iritatoday" target="_blank">
 								<img src={telegram} alt="Link" />
 							</a>
 						</li>
