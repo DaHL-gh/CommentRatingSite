@@ -15,7 +15,7 @@ const Footer = () => {
 							</a>
 						</li>
 						<li className="social__item" style = {{listStyle: 'none'}}>
-							<a href="https://github.com" target="_blank">
+							<a href="https://github.com/razumm56/emoratevk" target="_blank">
 								<img src={gitHub} alt="Link" />
 							</a>
 						</li>

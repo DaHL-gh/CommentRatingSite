@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { PieChart, Pie, Tooltip } from "recharts";
+import { PieChart, Pie, Tooltip, Text} from "recharts";
+import fetchData from "../../utils/fetchData";
 
 const Diagrams = () => {
 	const [windowSize, setWindowSize] = useState({
@@ -21,7 +22,7 @@ const Diagrams = () => {
 	// Функция для определения размеров графика
 	const getChartDimensions = () => {
 		if (windowSize.width < 768) {
-			return { width: 400, height: 400, outerRadius: "80%" };
+			return { width: 410, height: 400, outerRadius: "80%" };
 		} else {
 			return { width: 550, height: 500, outerRadius: "90%" };
 		}
@@ -48,8 +49,11 @@ const Diagrams = () => {
 					cy="50%"
 					outerRadius={chartDimensions.outerRadius}
 					fill="#8884d8"
-					label
+					label={({percent }) =>
+						`${(percent * 100).toFixed(0)}%`
+					} 
 				/>
+
 				<Tooltip />
 			</PieChart>
 		</div>

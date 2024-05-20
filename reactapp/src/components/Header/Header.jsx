@@ -18,7 +18,7 @@ const Header = () => {
 				</h1>
 				<div className="header__text"></div>
 				{/* <div class="arrow animated"></div> */}
-				<a href="#!" className="btn" style={{ textDecoration: "none" }}>
+				<a href="https://github.com/DaHL-gh/CommentRatingSite" className="btn" style={{ textDecoration: "none" }} target="_blank">
 					Link to API
 				</a>
 			</div>

@@ -1,40 +1,40 @@
-import React, { useRef, useState } from "react";
+import React from "react";
+import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import "./style.css";
 import Diagrams from "../diagrams/Diagrams";
-import fetchData from "../../utils/fetchData";
-
 const Main = () => {
 	const inputRef = useRef();
 	const [inputValue, setInputValue] = useState("");
-
-	const handleInputChange = async (event) => {
+	const handleInputChange = (event) => {
 		event.preventDefault();
-		const url = inputRef.current.value;
-		const data = await fetchData(url); // Use the fetchData function
-		if (data) {
-			setInputValue(data.first_field); // Assume the server returns an object with a message field
-		}
+		// ВОТ ЗДЕСЬ БУДЕТ ДЕЛАТЬ ЗАПРОС НА СЕРВЕР
+		setInputValue(inputRef.current.value);
+		console.log("Значение:", inputRef.current.value);
 		inputRef.current.value = "";
 	};
-
 	return (
 		<motion.div
-			initial={{ opacity: 0 }}
+			intial={{ opacity: 0 }}
 			animate={{ opacity: 1 }}
 			exit={{ opacity: 0, transition: { duration: 0.2 } }}
 		>
+			{/* <Diagrams/> */}
 			<div className="main">
 				<Diagrams className="diogram" />
-				<p>{inputValue}</p>
-				<form onSubmit={handleInputChange}>
+				{/* <Diagrams2 className = 'diogram' /> */}
+				<p>
+					{inputValue}Нейтральных комментариев больше. Всего
+					комментариев: 58
+				</p>
+				<form>
 					<input
 						className="main_input"
 						type="text"
 						ref={inputRef}
 						placeholder="Введите ссылку"
 					/>
-					<button className="btn1" type="submit">
+					<button className="btn1" onClick={handleInputChange}>
 						➤
 					</button>
 				</form>
