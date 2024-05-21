@@ -1,5 +1,6 @@
 import "./style.css";
 import { motion } from "framer-motion";
+import ParticlesComponent from "../Particles/particles";
 const Header = () => {
 	return (
 		<motion.header
@@ -15,12 +16,13 @@ const Header = () => {
 					</strong>
 					<br />
 					Emotional assessment of posts from VK
+					{/* <ParticlesComponent id='particles'/> */}
 				</h1>
 				<div className="header__text"></div>
-				{/* <div class="arrow animated"></div> */}
 				<a href="https://github.com/DaHL-gh/CommentRatingSite" className="btn" style={{ textDecoration: "none" }} target="_blank">
 					Link to API
 				</a>
+				<ParticlesComponent id='particles'/>
 			</div>
 		</motion.header>
 	);

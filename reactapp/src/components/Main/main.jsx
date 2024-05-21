@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import "./style.css";
 import Diagrams from "../diagrams/Diagrams";
 import fetchData from "../../utils/fetchData";
+import ParticlesComponent from "../Particles/particles";
 
 const Main = () => {
 	const inputRef = useRef();
@@ -38,6 +39,7 @@ const Main = () => {
 						➤
 					</button>
 				</form>
+				{/* <ParticlesComponent id='particles'/> */}
 			</div>
 		</motion.div>
 	);

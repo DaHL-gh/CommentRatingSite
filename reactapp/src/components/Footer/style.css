@@ -101,6 +101,8 @@ body {
 
 
 .footer {
+	position: relative;
+	z-index: 2;
 	margin-top: auto;
 	padding: 20px 0 15px;
 	background-color: var(--footer-bg);
@@ -139,3 +141,4 @@ body {
     margin-bottom: -40px;
 
 }
+
