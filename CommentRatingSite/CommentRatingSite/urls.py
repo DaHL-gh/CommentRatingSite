@@ -17,9 +17,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from SiteApp.views import *
+from ApiApp.views import AiModelView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', ReactView.as_view(), name='anything'),
+    path('api/', AiModelView.as_view())
 ]
