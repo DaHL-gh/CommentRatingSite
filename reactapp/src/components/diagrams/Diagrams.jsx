@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { PieChart, Pie, Tooltip, Label } from "recharts";
 import fetchData from "../../utils/fetchData";
 
-const Diagrams = () => {
+const Diagrams = ({data}) => {
 	const [labelVisible, setLabelVisible] = useState(false);
 
 	useEffect(() => {
@@ -51,11 +51,11 @@ const Diagrams = () => {
 	};
 
 	const chartDimensions = getChartDimensions();
-	const data01 = [
-		{ name: "К-во положительных комментариев", value: 1, fill: "#4caf50" },
-		{ name: "К-во отрицательных комментариев", value: 2, fill: "#FF0000" },
-		{ name: "К-во нейтральных комментариев", value: 55, fill: "#2196f3" },
-	];
+	const data01 = data ? [
+		{ name: "К-во положительных комментариев", value: data.positive, fill: "#4caf50" },
+		{ name: "К-во отрицательных комментариев", value: data.negative, fill: "#FF0000" },
+		{ name: "К-во нейтральных комментариев", value: data.neutral, fill: "#2196f3" },
+	  ] : [];
 	const fullprocent = (((58 * 1 + 2 * -1 + 55 * 0) / 58) * 100).toFixed(2);
 	const data02 = [{ name: "Общее к-во комментариев", value: 100 }];
 
