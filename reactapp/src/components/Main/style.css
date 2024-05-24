@@ -99,7 +99,6 @@ body {
 	line-height: 1.3;
 }
 
-
 .main {
 	padding: 40px 0;
 	min-height: 695px;
@@ -107,16 +106,15 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	flex-direction:column;
+	flex-direction: column;
 	position: relative;
-
 }
 
 input {
 	width: 1000px;
-    padding: 10px;
-    border: 2px solid var(--black-border);
-    border-radius: 20px;
+	padding: 10px;
+	border: 2px solid var(--black-border);
+	border-radius: 20px;
 	margin-right: 0;
 	margin-left: 0;
 	align-self: flex-start;
@@ -125,13 +123,20 @@ input {
 }
 
 .btn1 {
-  position: absolute;
-  margin-right: 3px;
-  padding: 8px 10px;
-  background-color: white;
-  border: none;
-  border-radius: 60px;
+	cursor: pointer;
+	position: absolute;
+	margin-right: 3px;
+	padding: 8px 10px;
+	background-color: #5c62ec;
+	border: none;
+	border-radius: 60px;
+	transition: background-color 0.5s ease;
 }
+
+.btn1:hover {
+	background-color: #8184dd;
+}
+
 
 form {
 	width: 1000px;
@@ -142,13 +147,13 @@ form {
 	margin-top: 0px;
 	max-width: 1000px;
 	margin-bottom: 40px;
-  }
+}
 
-  @media (max-width: 1000px) {
-    form {
-        width: 95vw; /* Увеличиваем ширину формы до 95% от ширины вьюпорта */
-        /* Другие стили */
-    }
+@media (max-width: 1000px) {
+	form {
+		width: 95vw; /* Увеличиваем ширину формы до 95% от ширины вьюпорта */
+		/* Другие стили */
+	}
 }
 
 .diogram {

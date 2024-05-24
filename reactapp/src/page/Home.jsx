@@ -12,7 +12,7 @@ const Home = () => {
 				exit={{ opacity: 1, transition: { duration: 1 } }}
 			>
 				{/* <ParticlesComponent id='particles'/> */}
-				<Header/>
+				<Header />
 			</motion.div>
 			<Footer />
 		</div>

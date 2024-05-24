@@ -37,7 +37,7 @@ const ParticlesComponent = (props) => {
           value: "black",
         },
       },
-      fpsLimit: 120,
+      fpsLimit: 200,
       interactivity: {
         events: {
           onClick: {
@@ -78,13 +78,13 @@ const ParticlesComponent = (props) => {
           },
           random: true,
           speed: 5,
-          straight: false,
+          straight: true,
         },
         number: {
           density: {
             enable: true,
           },
-          value: 100,
+          value: 400,
         },
         opacity: {
           value: 1.0,
