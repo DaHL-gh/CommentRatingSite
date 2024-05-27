@@ -17,9 +17,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from ApiApp.views import AIView
+from ApiApp.views import AiModelView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', AIView.as_view(), name='another_anything')
+    path('api/', AiModelView.as_view())
 ]

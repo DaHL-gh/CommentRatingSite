@@ -8,6 +8,7 @@ import ParticlesComponent from "../Particles/particles";
 const Main = () => {
 	const inputRef = useRef();
 	const [inputValue, setInputValue] = useState("");
+	const [fetchedData, setFetchedData] = useState(null);
 
 	const handleInputChange = async (event) => {
 		event.preventDefault();
@@ -15,6 +16,7 @@ const Main = () => {
 		const data = await fetchData(url); // Use the fetchData function
 		if (data) {
 			setInputValue(data.first_field); // Assume the server returns an object with a message field
+			setFetchedData(data);
 		}
 		inputRef.current.value = "";
 	};
@@ -26,7 +28,7 @@ const Main = () => {
 			exit={{ opacity: 0, transition: { duration: 0.2 } }}
 		>
 			<div className="main">
-				<Diagrams className="diogram" />
+				<Diagrams className="diogram" data={fetchedData} />
 				<p>{inputValue}</p>
 				<form onSubmit={handleInputChange}>
 					<input

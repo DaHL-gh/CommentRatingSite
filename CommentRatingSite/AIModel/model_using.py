@@ -1,26 +1,21 @@
+import os
+
 from joblib import dump, load
-from cleaner import CleanedKomm
+from .cleaner import CleanedKomm
 
-tfidf_vectorizer = load("tfidf_vectorizer.bin")
-label_encoder = load("label_encoder.bin")
-model = load("model_v_0_1.pkl")
-
-
-def query(text):
-    tfidf_vectorizer = load("tfidf_vectorizer.bin")
-    label_encoder = load("label_encoder.bin")
-    model = load("model_v_0_1.pkl")
-
-    komm_cleaner = CleanedKomm()
-    clear_user_text = komm_cleaner.clean_text(text)
-    vect_user_text = tfidf_vectorizer.transform([clear_user_text])
-    return label_encoder.inverse_transform(model.predict(vect_user_text))
+module_dir = os.getcwd() + '\AIModel'
+tfidf_vectorizer = load(module_dir + "\\tfidf_vectorizer.bin")
+label_encoder = load(module_dir + "\label_encoder.bin")
+model = load(module_dir + "\model_v_0_1.pkl")
 
 
 def main():
     while True:
         user_text = input("Введите ваш текст: ")
-        print(query(user_text))
+        komm_cleaner = CleanedKomm()
+        clear_user_text = komm_cleaner.clean_text(user_text)
+        vect_user_text = tfidf_vectorizer.transform([clear_user_text])
+        print(label_encoder.inverse_transform(model.predict(vect_user_text)))
 
         # val_db = pd.read_csv('cleaned_dataset1.csv')
         # count_com, pos_com, neg_com, skip_com, speech_com, neut_com = 1, 0, 0, 0, 0, 0
@@ -47,5 +42,9 @@ def main():
         # print(f"Кол-во пропущенных комментариев: {skip_com}")
         # print(f"Речь: {speech_com}")
 
-if __name__ == '__main__':
-    main()
+
+def query(user_text: str) -> str:
+        komm_cleaner = CleanedKomm()
+        clear_user_text = komm_cleaner.clean_text(user_text)
+        vect_user_text = tfidf_vectorizer.transform([clear_user_text])
+        return label_encoder.inverse_transform(model.predict(vect_user_text))
