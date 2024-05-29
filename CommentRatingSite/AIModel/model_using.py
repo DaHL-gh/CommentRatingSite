@@ -39,7 +39,3 @@ class Model:
 
         return {'positive': pos_com, 'negative': neg_com, 'neutral': neut_com, 'skip': skip_com, 'speech': speech_com}
 
-
-model = Model()
-print(model.predict_single_comment(['чмо']))
-print(model.predict_list_comments(['чмо', 'ты чмо', 'я чмо']))
