@@ -11,7 +11,7 @@ nltk.download('wordnet')
 
 class CleanedKomm:
     start_file = 'comment_dataset.csv'
-    final_file = '../../../PycharmProjects/pythonProject5/cleaned_dataset.csv'
+    final_file = 'cleaned_dataset.csv'
 
     def remove_mentions(self, text):
         return re.sub(r'@\w+', '', text)

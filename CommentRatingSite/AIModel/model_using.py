@@ -13,7 +13,7 @@ class Model:
         self.model = load(self.module_dir + "\model_v_0_1.pkl")
 
     def predict_single_comment(self, comment: list) -> str:
-        clear_comment = self.komm_cleaner.clean_text(comment)
+        clear_comment = self.komm_cleaner.clean_text(''.join(comment))
         vect_comment = self.tfidf_vectorizer.transform([clear_comment])
         return self.label_encoder.inverse_transform(self.model.predict(vect_comment))
 
