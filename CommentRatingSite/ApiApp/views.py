@@ -5,6 +5,7 @@ from rest_framework.views import APIView
 
 from CommentRatingSite.AIModel.model_using import Model
 from CommentRatingSite.AIModel.parser_comments import VkApp
+from CommentRatingSite.AIModel.cleaner import CleanedKomm
 
 
 class AiModelView(APIView):
@@ -18,4 +19,3 @@ class AiModelView(APIView):
         comments = vkapp.get(request.data['url'])
 
         return Response(model.predict_list_comments(comments))
-
