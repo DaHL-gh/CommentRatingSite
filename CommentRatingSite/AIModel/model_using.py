@@ -33,4 +33,4 @@ class Model:
             elif predict == 'neutral':
                 neut_com += 1
 
-        return {'positive': pos_com, 'negative': neg_com, 'neutral': neut_com}
+        return {'count_comments': count_com, 'positive': pos_com, 'negative': neg_com, 'neutral': neut_com}

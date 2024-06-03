@@ -5,7 +5,6 @@ from rest_framework.views import APIView
 
 from CommentRatingSite.AIModel.model_using import Model
 from CommentRatingSite.AIModel.parser_comments import VkApp
-from CommentRatingSite.AIModel.cleaner import CleanedKomm
 
 
 class AiModelView(APIView):
