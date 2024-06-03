@@ -7,11 +7,13 @@ from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import word_tokenize
 
 nltk.download('wordnet')
+nltk.download('punkt')
 
 
 class CleanedKomm:
-    start_file = 'comment_dataset.csv'
-    final_file = '../../../PycharmProjects/pythonProject5/cleaned_dataset.csv'
+    def __init__(self):
+        self.start_file = 'comment_dataset.csv'
+        self.final_file = 'cleaned_dataset.csv'
 
     def remove_mentions(self, text):
         return re.sub(r'@\w+', '', text)

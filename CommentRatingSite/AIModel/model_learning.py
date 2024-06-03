@@ -1,4 +1,4 @@
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.ensemble import RandomForestClassifier, VotingClassifier
 from sklearn.svm import SVC
@@ -11,15 +11,15 @@ from sklearn import metrics
 import pandas as pd
 import numpy as np
 
-
-comment_df = pd.read_csv(r"C:\Users\Senox\Desktop\Projects\CommentRatingSite\AIModel\cleaned_dataset.csv")
+comment_df = pd.read_csv(
+    r"C:\Users\Senox\Desktop\Projects\CommentRatingSite\CommentRatingSite\AIModel\cleaned_dataset.csv")
 
 # Convert text to numerical features using TfidfVectorizer
 tfidf_vectorizer = TfidfVectorizer()
 X_vect = tfidf_vectorizer.fit_transform(comment_df["cleaned_comments"])
 
 # Save learning vectorizer
-dump(tfidf_vectorizer, "tfidf_vectorizer.bin", compress=True)
+# dump(tfidf_vectorizer, "tfidf_vectorizer.bin", compress=True)
 
 # Convert text to numerical features using LabelEncoder
 y = np.array(comment_df["labels"])
@@ -27,10 +27,11 @@ label_encoder = LabelEncoder()
 y_encoded = label_encoder.fit_transform(y)
 
 # Save learning encoder
-dump(label_encoder, "label_encoder.bin", compress=True)
+# dump(label_encoder, "label_encoder.bin", compress=True)
 
 # Split data into train and test sets
 X_train, X_test, y_train, y_test = train_test_split(X_vect, y_encoded, test_size=0.2, random_state=42)
+
 
 # Train and predict general model
 def train_and_predict_finish_model():
@@ -40,18 +41,18 @@ def train_and_predict_finish_model():
     ec_classifier = VotingClassifier(estimators=[("Multinominal NB", nb_classifier),
                                                  ("Logistic Regression", lr_classifier),
                                                  ("Support Vector Machine", svc_classifier)], voting='soft',
-                                     weights=[1, 2, 3])
+                                     weights=[3, 1, 2])
     ec_classifier.fit(X_train, y_train)
 
     # Save learning model
-    dump(ec_classifier, "model_v_0_1.pkl", compress=True)
+    # dump(ec_classifier, "model_v_0_1.pkl", compress=True)
     pred = ec_classifier.predict(X_test)
     score = metrics.accuracy_score(y_test, pred)
 
     return score
 
 
-train_and_predict_finish_model()
+print(train_and_predict_finish_model())
 
 # def train_and_predict_SVC():
 #     svc_classifier = SVC(probability=False)
@@ -67,7 +68,7 @@ train_and_predict_finish_model()
 #
 #
 # print(train_and_predict_SVC())
-# # {'C': 1, 'kernel': 'linear'}, 0.5272227811442329)
+# # {'C': 1, 'kernel': 'linear'}, 0.5956051832055926)
 
 # def train_and_predict_LogisticRegression():
 #     lr_classifier = LogisticRegression(n_jobs=-1, random_state=42)
@@ -82,7 +83,7 @@ train_and_predict_finish_model()
 #     return best_params, best_score
 #
 # print(train_and_predict_LogisticRegression())
-# #best {'C': 3, 'class_weight': None, 'max_iter': 300} 0.524
+# #best ({'C': 2, 'class_weight': None, 'max_iter': 300}, 0.5965107363193336)
 
 # def train_and_predict_MultinomialNB(alpha):
 #     nb_classifier = MultinomialNB(alpha=alpha)
@@ -110,4 +111,4 @@ train_and_predict_finish_model()
 # plt.ylabel('Score')
 # plt.title('Score')
 # plt.show()
-# #best for alpha: 0.5 score 0.52
+# #best for alpha: 0.5 score 0.58
