@@ -12,15 +12,15 @@ const Header = () => {
 			<div className="header__wrapper">
 				<h1 className="header__title">
 					<strong>
-						Welcome to our <em>site!</em>
+						Добро пожаловать на <em>сайт!</em>
 					</strong>
 					<br />
-					Emotional assessment of posts from VK
+					Эмоциональная оценка постов из ВК
 					{/* <ParticlesComponent id='particles'/> */}
 				</h1>
 				<div className="header__text"></div>
 				<a href="https://github.com/DaHL-gh/CommentRatingSite" className="btn" style={{ textDecoration: "none" }} target="_blank">
-					Link to API
+					Ссылка на API
 				</a>
 				<ParticlesComponent id='particles'/>
 			</div>

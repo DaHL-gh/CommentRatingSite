@@ -110,13 +110,13 @@ body {
 	justify-content: center;
 	align-items: center;
 
-	background-color: var(--header-bg);
+	background-color: white;
 	/* background-image: url('./header-bg.png'); */
 	background-repeat: no-repeat;
 	background-size: auto;
 	background-position: center center;
 
-	color: var(--header-text);
+	color: black;
 	text-align: center;
 }
 
@@ -129,8 +129,8 @@ body {
 
 .header__title {
 	margin-bottom: 20px;
-	font-size: 40px;
-	font-weight: 700;
+	font-size: 35px;
+	font-weight: 540;
 	line-height: 1.4;
 }
 
