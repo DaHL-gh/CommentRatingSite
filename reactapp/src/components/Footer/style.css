@@ -105,8 +105,8 @@ body {
 	z-index: 2;
 	margin-top: auto;
 	padding: 20px 0 15px;
-	background-color: var(--footer-bg);
-	color: var(--footer-text);
+	background-color: rgb(245, 245, 245);
+	color: black;
     border-top: 1px solid var(--nav-border);
 }
 
@@ -139,6 +139,7 @@ body {
 	padding-right: 11px;
     margin-top: -20px;
     margin-bottom: -40px;
+	fill:black
 
 }
 

@@ -107,7 +107,7 @@ body {
 .nav {
 	z-index: 2;
 	padding: 20px 0;
-	background-color: var(--nav-bg);
+	background-color: rgb(245, 245, 245);
 	border-bottom: 1px solid var(--nav-border);
 	color: var(--nav-text);
 	letter-spacing: normal;
@@ -125,7 +125,7 @@ body {
 
 .logo {
 	margin-right: auto;
-	color: var(--nav-text);
+	color: black;
 	font-size: 24px;
 	font-family: "Poppins", sans-serif;
 }
@@ -146,7 +146,7 @@ body {
 }
 
 .nav-list__link {
-	color: var(--nav-text);
+	color: black;
 	transition: opacity 0.2s ease-in;
 }
 
