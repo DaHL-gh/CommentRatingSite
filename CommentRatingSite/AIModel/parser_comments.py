@@ -7,23 +7,22 @@ import csv
 
 
 class VkApp:
+    _chrome_options = Options()
+    _chrome_options.add_argument("--headless")
 
-    def __init__(self):
-        chrome_options = Options()
-        chrome_options.add_argument("--headless")
-        self.driver = webdriver.Chrome(options=chrome_options)
-        self._url = None
-        self._filename = None
-        self._comments = []
+    _driver = webdriver.Chrome(options=_chrome_options)
+    _url = None
+    _filename = None
+    _comments = []
 
-    def validate(self) -> None:
+    def _validate(self) -> None:
         members = dir(self)
         for member in members:
             if member.startswith("validate_"):
                 validate_function = getattr(self, member)
                 validate_function()
 
-    def validate_link(self) -> None:
+    def _validate_link(self) -> None:
         parsed_url = urlparse(self._url)
 
         domain = parsed_url.netloc
@@ -31,30 +30,30 @@ class VkApp:
         if 'vk.com' not in domain:
             raise ValueError("This link is incorrect. It should be for vk.com")
 
-    def validate_filename(self):
+    def _validate_filename(self):
         if not self._filename:
             self._filename = 'dataset.csv'
 
         if not self._filename.endswith('.csv'):
             self._filename += '.csv'
 
-    def get_comments(self) -> list:
-        self.driver.get(self._url)
-        comments = self.driver.find_elements(By.CLASS_NAME, 'wall_reply_text')
-        self.to_list(comments)
-        self.close()
+    def _get_comments(self) -> list:
+        self._driver.get(self._url)
+        comments = self._driver.find_elements(By.CLASS_NAME, 'wall_reply_text')
+        self._to_list(comments)
+        self._close()
         return self._comments
 
-    def close(self):
-        self.driver.close()
-        self.driver.quit()
+    def _close(self):
+        self._driver.close()
+        self._driver.quit()
 
-    def to_list(self, comments) -> list:
+    def _to_list(self, comments) -> list:
         for comment in comments:
             self._comments.append(comment.text)
         return self._comments
 
-    def save_list_to_csv(self, comments):
+    def _save_list_to_csv(self, comments):
         _type = 'w'
         if os.path.exists(self._filename):
             _type = 'a'
@@ -70,8 +69,15 @@ class VkApp:
 
         self._url = url
         self._filename = filename
-        self.validate()
+        self._validate()
         if csv:
-            self.save_list_to_csv(self.get_comments())
+            self._save_list_to_csv(self._get_comments())
             return self._comments
-        return self.get_comments()
+        return self._get_comments()
+
+    _instance = None
+
+    def __new__(cls, *args, **kwargs):
+        if not isinstance(cls._instance, cls):
+            cls._instance = object.__new__(cls, *args, **kwargs)
+        return cls._instance

@@ -2,19 +2,32 @@ from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.request import Request
 from rest_framework.views import APIView
+from rest_framework import status
 
-from CommentRatingSite.AIModel.model_using import Model
-from CommentRatingSite.AIModel.parser_comments import VkApp
+from AIModel import parser_comments, model_using
 
 
 class AiModelView(APIView):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
     def post(self, request: Request):
-        vkapp = VkApp()
-        model = Model()
+        if 'model_version' in request.data:
+            model_version = request.data['model_version']
+        else:
+            return Response({'message': 'no model_version in request'}, status=status.HTTP_400_BAD_REQUEST)
 
-        comments = vkapp.get(request.data['url'])
+        if 'url' in request.data:
+            url = request.data['url']
+        else:
+            return Response({'message': 'no url in request'}, status=status.HTTP_400_BAD_REQUEST)
 
-        return Response(model.predict_list_comments(comments))
+        vkapp = parser_comments.VkApp()
+        model = model_using.Model(model_version)
+
+        try:
+            result = model.predict_list_of_comments(vkapp.get(url))
+        except:
+            return Response({'message': 'Link is not valid'}, status=status.HTTP_400_BAD_REQUEST)
+
+        answer = {'result': result,
+                  'model_version': model_version}
+
+        return Response(answer)
