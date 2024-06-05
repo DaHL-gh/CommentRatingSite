@@ -13,7 +13,8 @@ const Main = () => {
 	const handleInputChange = async (event) => {
 		event.preventDefault();
 		const url = inputRef.current.value;
-		const data = await fetchData(url); // Use the fetchData function
+		const model_version = "latest";
+		const data = await fetchData(url, model_version); // Use the fetchData function
 		if (data) {
 			setInputValue(data.first_field); // Assume the server returns an object with a message field
 			setFetchedData(data);
