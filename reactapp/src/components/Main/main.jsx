@@ -35,7 +35,7 @@ const Main = () => {
 						className="main_input"
 						type="text"
 						ref={inputRef}
-						placeholder="Введите ссылку"
+						placeholder="Введите ссылку и получите статистику"
 					/>
 					<button className="btn1" type="submit">
 						➤

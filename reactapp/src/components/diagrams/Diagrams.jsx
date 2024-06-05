@@ -2,13 +2,13 @@ import React, { useState, useEffect } from "react";
 import { PieChart, Pie, Tooltip, Label } from "recharts";
 import fetchData from "../../utils/fetchData";
 
-const Diagrams = ({data}) => {
+const Diagrams = ({ data }) => {
 	const [labelVisible, setLabelVisible] = useState(false);
 
 	useEffect(() => {
 		const timer = setTimeout(() => {
 			setLabelVisible(true);
-		}, 2500); // Set the delay here, 3000ms is 3 seconds
+		}, 2500);
 
 		return () => clearTimeout(timer);
 	}, []);
@@ -41,7 +41,7 @@ const Diagrams = ({data}) => {
 			};
 		} else {
 			return {
-				width: 550,
+				width: 560,
 				height: 500,
 				outerRadius: "90%",
 				innerRadiusmin: "60%",
@@ -51,13 +51,35 @@ const Diagrams = ({data}) => {
 	};
 
 	const chartDimensions = getChartDimensions();
-	const data01 = data ? [
-		{ name: "К-во положительных комментариев", value: data.positive, fill: "#4caf50" },
-		{ name: "К-во отрицательных комментариев", value: data.negative, fill: "#FF0000" },
-		{ name: "К-во нейтральных комментариев", value: data.neutral, fill: "#2196f3" },
-	  ] : [];
-	const fullprocent = (((58 * 1 + 2 * -1 + 55 * 0) / 58) * 100).toFixed(2);
-	const data02 = [{ name: "Общее к-во комментариев", value: 100 }];
+	const data01 = data
+		? [
+				{
+					name: "К-во положительных комментариев",
+					value: data.positive,
+					fill: "#4caf50",
+				},
+				{
+					name: "К-во отрицательных комментариев",
+					value: data.negative,
+					fill: "#FF0000",
+				},
+				{
+					name: "К-во нейтральных комментариев",
+					value: data.neutral,
+					fill: "#2196f3",
+				},
+		  ]
+		: [];
+	const fullprocent = data
+		? (
+				((data.positive * 1 + data.negative * -1 + data.neutral * 0) /
+					data.comments_count) *
+				100
+		  ).toFixed(2)
+		: 0;
+	const data02 = data
+		? [{ name: "Общее к-во комментариев", value: data.comments_count }]
+		: [];
 
 	// Function to determine the color of the label based on the percentage
 	const getLabelColor = (percentage) => {
@@ -65,7 +87,7 @@ const Diagrams = ({data}) => {
 		if (percentage >= 50) return "#ff9800"; // Orange
 		return "#FF0000"; // Red
 	};
-	const labelColor = getLabelColor(fullprocent)
+	const labelColor = getLabelColor(fullprocent);
 
 	return (
 		<div className="piechart-container">

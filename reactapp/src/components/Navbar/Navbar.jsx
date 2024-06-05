@@ -22,7 +22,7 @@ const Navbar = () => {
 									return isActive ? activeLink : normaleLink;
 								}} style={{ textDecoration: 'none' }}
 							>
-								Home
+								 <strong>Дом</strong>
 							</NavLink>
 						</li>
 						<li className="nav-list__item">
@@ -32,7 +32,7 @@ const Navbar = () => {
 									return isActive ? activeLink : normaleLink;
 								}} style={{ textDecoration: 'none' }}
 							>
-								App
+								 <strong>Сервис</strong>
 							</NavLink>
 						</li>
 					</ul>
