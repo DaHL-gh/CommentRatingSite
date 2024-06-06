@@ -8,10 +8,12 @@ import csv
 
 class VkApp:
     def __init__(self):
-        _chrome_options = Options()
-        _chrome_options.add_argument("--headless")
+        chrome_options = Options()
+        chrome_options.add_argument("--headless")
+        chrome_options.add_argument('--no-sandbox')
+        chrome_options.add_argument('--disable-dev-shm-usage')
 
-        self._driver = webdriver.Chrome(options=_chrome_options)
+        self._driver = webdriver.Chrome(options=chrome_options)
         self._url = None
         self._filename = None
         self._comments = []
