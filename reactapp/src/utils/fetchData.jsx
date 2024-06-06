@@ -9,7 +9,7 @@ const fetchData = async (url, model_version) => {
 		});
 		const data = await response.json();
 		console.log("Ответ сервера:", data);
-		return data; // Return the data for further processing
+		return data.result; // Return the data for further processing
 	} catch (error) {
 		console.error("Ошибка при отправке запроса:", error);
 		return null; // Return null in case of an error

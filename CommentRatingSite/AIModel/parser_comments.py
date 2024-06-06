@@ -7,13 +7,14 @@ import csv
 
 
 class VkApp:
-    _chrome_options = Options()
-    _chrome_options.add_argument("--headless")
+    def __init__(self):
+        _chrome_options = Options()
+        _chrome_options.add_argument("--headless")
 
-    _driver = webdriver.Chrome(options=_chrome_options)
-    _url = None
-    _filename = None
-    _comments = []
+        self._driver = webdriver.Chrome(options=_chrome_options)
+        self._url = None
+        self._filename = None
+        self._comments = []
 
     def _validate(self) -> None:
         members = dir(self)
@@ -75,9 +76,9 @@ class VkApp:
             return self._comments
         return self._get_comments()
 
-    _instance = None
-
-    def __new__(cls, *args, **kwargs):
-        if not isinstance(cls._instance, cls):
-            cls._instance = object.__new__(cls, *args, **kwargs)
-        return cls._instance
+    # _instance = None
+    #
+    # def __new__(cls, *args, **kwargs):
+    #     if not isinstance(cls._instance, cls):
+    #         cls._instance = object.__new__(cls, *args, **kwargs)
+    #     return cls._instance
