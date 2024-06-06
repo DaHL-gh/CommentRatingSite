@@ -7,16 +7,15 @@ import csv
 
 
 class VkApp:
-    def __init__(self):
-        chrome_options = Options()
-        chrome_options.add_argument("--headless")
-        chrome_options.add_argument("--remote-debugging-pipe")
-        chrome_options.add_argument("--disable-dev-shm-usage")
+    chrome_options = Options()
+    chrome_options.add_argument("--headless")
+    chrome_options.add_argument("--remote-debugging-pipe")
+    chrome_options.add_argument("--disable-dev-shm-usage")
 
-        self._driver = webdriver.Chrome(options=chrome_options)
-        self._url = None
-        self._filename = None
-        self._comments = []
+    _driver = webdriver.Chrome(options=chrome_options)
+    _url = None
+    _filename = None
+    _comments = []
 
     def _validate(self) -> None:
         members = dir(self)
@@ -78,9 +77,9 @@ class VkApp:
             return self._comments
         return self._get_comments()
 
-    # _instance = None
-    #
-    # def __new__(cls, *args, **kwargs):
-    #     if not isinstance(cls._instance, cls):
-    #         cls._instance = object.__new__(cls, *args, **kwargs)
-    #     return cls._instance
+    _instance = None
+
+    def __new__(cls, *args, **kwargs):
+        if not isinstance(cls._instance, cls):
+            cls._instance = object.__new__(cls, *args, **kwargs)
+        return cls._instance
