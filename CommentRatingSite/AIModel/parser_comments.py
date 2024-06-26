@@ -7,11 +7,13 @@ import csv
 
 
 class VkApp:
+
     def __init__(self):
         chrome_options = Options()
         chrome_options.add_argument("--headless")
         chrome_options.add_argument("--remote-debugging-pipe")
         chrome_options.add_argument("--disable-dev-shm-usage")
+        chrome_options.add_argument("--disable-3d-apis")
 
         self._driver = webdriver.Chrome(options=chrome_options)
         self._url = None
@@ -77,10 +79,3 @@ class VkApp:
             self._save_list_to_csv(self._get_comments())
             return self._comments
         return self._get_comments()
-
-    # _instance = None
-    #
-    # def __new__(cls, *args, **kwargs):
-    #     if not isinstance(cls._instance, cls):
-    #         cls._instance = object.__new__(cls, *args, **kwargs)
-    #     return cls._instance
